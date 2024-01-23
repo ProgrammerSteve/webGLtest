@@ -4,7 +4,7 @@ declare module 'webgl' {
   export default webgl;
 }
 
-interface WebGLContextAttributes {
+export interface WebGLContextAttributes {
 	alpha : bool;
 	depth : bool;
 	stencil : bool;
@@ -12,45 +12,45 @@ interface WebGLContextAttributes {
 	premultipliedAlpha : bool;
 }
 
-interface WebGLObject {
+export interface WebGLObject {
 	$__dummyprop__WebGLObject : any;
 }
 
-interface WebGLBuffer extends WebGLObject {
+export interface WebGLBuffer extends WebGLObject {
 	$__dummyprop__WebGLBuffer : any;
 }
 
-interface WebGLFramebuffer extends WebGLObject {
+export interface WebGLFramebuffer extends WebGLObject {
 	$__dummyprop__WebGLFramebuffer : any;
 }
 
-interface WebGLProgram extends WebGLObject {
+export interface WebGLProgram extends WebGLObject {
 	$__dummyprop__WebGLProgram : any;
 }
 
-interface WebGLRenderbuffer extends WebGLObject {
+export interface WebGLRenderbuffer extends WebGLObject {
 	$__dummyprop__WebGLRenderbuffer : any;
 }
 
-interface WebGLShader extends WebGLObject {
+export interface WebGLShader extends WebGLObject {
 	$__dummyprop__WebGLShader : any;
 }
 
-interface WebGLTexture extends WebGLObject {
+export interface WebGLTexture extends WebGLObject {
 	$__dummyprop__WebGLTexture : any;
 }
 
-interface WebGLUniformLocation {
+export interface WebGLUniformLocation {
 	$__dummyprop__WebGLUniformLocation : any;
 }
 
-interface WebGLActiveInfo {
+export interface WebGLActiveInfo {
 	size : number;
 	type : number;
 	name : string;
 }
 
-interface WebGLRenderingContext {
+export interface WebGLRenderingContext {
 	DEPTH_BUFFER_BIT : number;
 	STENCIL_BUFFER_BIT : number;
 	COLOR_BUFFER_BIT : number;
@@ -513,14 +513,14 @@ interface WebGLRenderingContext {
 	viewport(x : number, y : number, width : number, height : number) : void;
 }
 
-interface WebGLContextEvent extends Event {
+export interface WebGLContextEvent extends Event {
 	statusMessage : string;
 	initWebGLContextEvent(typeArg : string, canBubbleArg : bool, cancelableArg : bool, statusMessageArg : string) : void;
 }
 
 //Extend the window object with cross Browser callbacks so TS will not complain 
 //Also add the (non-standard) Canvas Element parameter for performance improvement 
-interface WindowAnimationTiming {
+export interface WindowAnimationTiming {
 	requestAnimationFrame(callback: FrameRequestCallback, canvas ?: HTMLCanvasElement): number;
 	//msRequestAnimationFrame(callback: FrameRequestCallback, canvas ?: HTMLCanvasElement): number;
 	mozRequestAnimationFrame(callback: FrameRequestCallback, canvas ?: HTMLCanvasElement): number;
@@ -535,6 +535,6 @@ interface WindowAnimationTiming {
 }
 
 //To make WebGL work 
-interface HTMLCanvasElement {
+export interface HTMLCanvasElement {
 	getContext(contextId: string, params : {}): WebGLRenderingContext;
 }
