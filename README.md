@@ -28,3 +28,12 @@ export default {
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+
+
+- https://webgl2fundamentals.org/webgl/lessons/webgl-text-glyphs.html
+- https://www.w3schools.com/graphics/webgl_intro.asp
+- https://www.youtube.com/watch?v=w3im_9qbM18&list=PLPbmjY2NVO_X1U1JzLxLDdRn4NmtxyQQo&index=11
+- https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/By_example/Video_textures
+- https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapoptions
+- https://fonts.varg.dev/
