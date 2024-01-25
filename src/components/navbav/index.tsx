@@ -1,17 +1,12 @@
 import { FC } from "react"
 import Button from "./button"
+import { demoList } from "../../App";
 interface NavbarProps {
 page:string;
 handleSelection:(page:string)=>void;
 }
   
-const demoList=[
-    "Triangle Demo",
-    "Glphy Map",
-    "2D Texture Demo",
-    "3D Texture Demo",
-    "Image Filter Demo"
-]
+
 
 const Navbar:FC<NavbarProps>=({page,handleSelection})=>{
     return(

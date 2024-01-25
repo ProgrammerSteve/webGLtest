@@ -18,6 +18,9 @@ export function createProgram(gl:WebGLRenderingContext, vertexShader:WebGLShader
   }
 }
 
+
+
+
 export function createAndCompileShader(gl:WebGLRenderingContext,type: number, source: string):WebGLShader{
   if (source.length==0) {
       if(type==gl.VERTEX_SHADER)throw Error(`Vertex Shader Source is an empty string`)

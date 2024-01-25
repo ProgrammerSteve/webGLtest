@@ -1,5 +1,6 @@
 import TriangleDemo from "../demos/triangleDemo"
 import TwoDimTextureDemo from "../demos/textureDemo/index."
+import MotionDemo from "../demos/motionDemo"
 import { FC } from "react"
 
 
@@ -8,6 +9,7 @@ export const PAGE_CLASSES={
     glphy: "Glphy Map",
     tex2D: "2D Texture Demo",
     tex3D: "3D Texture Demo",
+    motion: "Motion Demo",
     image: "Image Filter Demo",
 }
   
@@ -17,6 +19,7 @@ return({
     [PAGE_CLASSES.glphy]: TriangleDemo,
     [PAGE_CLASSES.tex2D]: TwoDimTextureDemo,
     [PAGE_CLASSES.tex3D]: TriangleDemo,
+    [PAGE_CLASSES.motion]: MotionDemo,
     [PAGE_CLASSES.image]: TriangleDemo,
 }[page]
 )}

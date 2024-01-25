@@ -3,12 +3,13 @@ import './App.css'
 import { useState} from 'react';
 import PageSelector from './components/PageSelector';
 
-const demoList=[
+export const demoList=[
   "Triangle Demo",
-  "Glphy Map",
+  "Glphy Atlas",
   "2D Texture Demo",
   "3D Texture Demo",
-  "Image Filter Demo"
+  "Motion Demo",
+  "Image Filter Demo",
 ]
 
 export default function App() {
