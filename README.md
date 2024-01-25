@@ -37,3 +37,4 @@ export default {
 - https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/By_example/Video_textures
 - https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmapoptions
 - https://fonts.varg.dev/
+- ImageMagick toolchain for sprites
