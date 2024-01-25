@@ -1,6 +1,6 @@
 import { useRef,useEffect } from 'react'
-import { vertexShaderSource,fragmentShaderSource } from '../../shaders/shader';
-import { createIndexBuffer, createProgram, createShaders, createVertexBuffer, setupAttribute } from '../../webGLUtils/createProgram';
+import { vertexShaderSource,fragmentShaderSource } from '../../../shaders/shader';
+import { createIndexBuffer, createProgram, createShaders, createVertexBuffer, setupAttribute } from '../../../webGLUtils/createProgram';
 
 
 

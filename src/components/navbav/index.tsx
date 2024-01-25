@@ -1,7 +1,8 @@
 import { FC, useState } from "react"
 import Button from "./button"
 interface NavbarProps {
-
+page:string;
+handleSelection:(page:string)=>void;
 }
   
 const demoList=[
@@ -12,11 +13,7 @@ const demoList=[
     "Image Filter Demo"
 ]
 
-const Navbar:FC<NavbarProps>=()=>{
-    const [page,setPage]=useState<string>(demoList[0])
-    const handleSelection=(page:string)=>{
-        setPage(page)
-    }
+const Navbar:FC<NavbarProps>=({page,handleSelection})=>{
     return(
         <div className="bg-gray-700 h-[70px] text-white text-xl flex justify-between px-4 rounded-md">
             <div className="grid place-items-center"><h1 className="font-extrabold text-2xl">WebGL2</h1></div>
