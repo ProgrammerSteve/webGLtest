@@ -4,3 +4,50 @@
   padding: 0px;
   text-align: center;
 }
+
+
+.div-container {
+  background-color: transparent;
+  height: 30px;
+  width: 30px;
+  position: relative;
+  cursor: pointer;
+}
+.top-bar {
+  position: absolute;
+  width: 30px;
+  height: 4px;
+  transition: transform 0.3s ease-in-out;
+  
+  background-color: white;
+  top: 0px;
+}
+.mid-bar {
+  position: absolute;
+  width: 30px;
+  height: 4px;
+  transition: transform 0.3s ease-in-out;
+  
+  background-color: white;
+  top: 13px;
+}
+.bottom-bar {
+  position: absolute;
+  width: 30px;
+  height: 4px;
+  transition: transform 0.3s ease-in-out;
+  
+  background-color: white;
+  bottom: 0px;
+}
+.bar-open-top {
+  transform: translate(0px, 13px) rotate(45deg);
+  transform-origin:center;
+}
+.bar-open-bottom {
+  transform: translate(0px, -13px) rotate(-45deg);
+  transform-origin:center;
+}
+.bar-open-middle {
+  transform: scale(0);
+}
