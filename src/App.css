@@ -1,8 +1,17 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 0px;
   text-align: center;
+}
+
+.page-height{
+  height: calc(100vh - 70px);
+  height: calc(100svh - 70px);
+}
+
+.sidebar-height{
+  height: 100vh;
+  height: 100svh;
 }
 
 

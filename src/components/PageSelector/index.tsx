@@ -31,7 +31,11 @@ page:string
 
 const PageSelector:FC<PageProps> =({page})=>{
     const CustomPage=getPage(page);
-    return(<CustomPage/>)
+    return(
+    
+    <div className='page-height grid place-items-center'><CustomPage/></div>
+    
+    )
 }
 
 export default PageSelector

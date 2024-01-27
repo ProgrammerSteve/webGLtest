@@ -24,7 +24,7 @@ export default function App() {
   }
   return (
     <>
-    <div>
+    <div className='bg-slate-300'>
       <Navbar page={page} handleSelection={handleSelection} toggleSidebar={toggleSidebar} isOpen={isOpen}/>
       <PageSelector page={page}/>
     </div>

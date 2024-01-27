@@ -51,7 +51,7 @@ const TriangleDemo = () => {
     }, []);
   
   
-    return <canvas ref={canvasRef} />;
+    return <canvas width={300} height={300} className='' ref={canvasRef} />;
   };
   
   export default TriangleDemo

@@ -16,7 +16,7 @@ const Sidebar:FC<NavbarProps>=({page,handleSelection,toggleSidebar,isOpen})=>{
     return(
         <>
         {isOpen &&
-        <div className="bg-gray-800 pt-[70px] text-white text-xl fixed top-0 right-0 w-[150px] h-[100svh] flex md:hidden flex-col gap-2 px-4 rounded-md">
+        <div className="bg-gray-800 pt-[70px] text-white text-xl fixed top-0 right-0 w-[150px] sidebar-height flex md:hidden flex-col gap-2 px-4 rounded-md">
             {demoList.map((title,ind)=><Button title={title} page={page} handleSelection={handleSideBarClick.bind(page)} key={`demo-sidebar-item-${ind}`}/>)}
         </div>}
         </>

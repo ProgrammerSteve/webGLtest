@@ -18,7 +18,7 @@ function spherePointCloud(pointCount:number) {
 
 const MotionDemo:FC=()=>{
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const vertexData = spherePointCloud(1e3);
+    const vertexData = spherePointCloud(1e4);
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -91,7 +91,7 @@ const MotionDemo:FC=()=>{
     return(
     
     <>
-    <canvas ref={canvasRef}/>
+    <canvas width={300} height={300} ref={canvasRef}/>
     </>
     )
 }
