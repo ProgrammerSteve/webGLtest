@@ -81,8 +81,8 @@ export function createIndexBuffer(gl: WebGLRenderingContext, indices: Uint16Arra
   //stride is 6 for the vertex
   //offset for position is 0 * Float32Array.BYTES_PER_ELEMENT
   //offset for color is 2 * Float32Array.BYTES_PER_ELEMENT
-export function setupAttribute(gl: WebGLRenderingContext, program: WebGLProgram, attributeName: string, size: number, stride: number, offset: number) {
+export function setupAttribute(gl: WebGLRenderingContext, program: WebGLProgram, attributeName: string, size: number, stride: number, offset: number, normalize=false) {
   const attributeLocation = gl.getAttribLocation(program, attributeName);
-  gl.vertexAttribPointer(attributeLocation, size, gl.FLOAT, false, stride * Float32Array.BYTES_PER_ELEMENT, offset * Float32Array.BYTES_PER_ELEMENT);
+  gl.vertexAttribPointer(attributeLocation, size, gl.FLOAT, normalize, stride * Float32Array.BYTES_PER_ELEMENT, offset * Float32Array.BYTES_PER_ELEMENT);
   gl.enableVertexAttribArray(attributeLocation);
 }

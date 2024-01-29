@@ -19,7 +19,7 @@ type FontInfo={
     glyphInfos:GlyphInfos
 }
 
-const fontInfo:FontInfo = {
+export const fontInfo:FontInfo = {
     letterHeight: 8,
     spaceWidth: 8,
     spacing: -1,
@@ -71,79 +71,70 @@ const fontInfo:FontInfo = {
   };
 
 
-  export function makeVerticesForString(fontInfo:FontInfo, s:string) {
-    var len = s.length;
-    var numVertices = len * 6; //2 triangles per letter
-    var positions = new Float32Array(numVertices * 2);
-    var texcoords = new Float32Array(numVertices * 2);
-    var offset = 0;
-    var x = 0;
-    var maxX = fontInfo.textureWidth;
-    var maxY = fontInfo.textureHeight;
 
-    for (var i = 0; i < len; ++i) {
-      var letter = s[i]; //get the letter from the string
-      //map the letter to get {x,y,width} values. 
-      // x is tex x coord
-      // y is tex y coord
-      // width is width in pixels of letter
-      let glyphInfo = fontInfo.glyphInfos[letter]; 
-
+// width and height are the dimensions of the canvas
+  export function makeVerticesForString(fontInfo: FontInfo, s: string,width:number,height:number) {
+    const len = s.length;
+    const numVertices = len * 6; // 2 triangles per letter
+    const data = new Float32Array(numVertices * 4); // 4 floats per vertex (2 for position, 2 for texcoord)
+    let offset = 0;
+    let x = 0;
+    const maxX = fontInfo.textureWidth;
+    const maxY = fontInfo.textureHeight;
+  
+    for (let i = 0; i < len; ++i) {
+      const letter = s[i];
+      const glyphInfo = fontInfo.glyphInfos[letter];
+  
       if (glyphInfo) {
-        let x2 = x + glyphInfo.width; //x1 is x, x2 is x+width
-
-        let u1 = glyphInfo.x / maxX; //scaling it to be from 0 to 1 by dividing by width of image
-        let u2 = (glyphInfo.x + glyphInfo.width - 1) / maxX; //scaling x2 position
-
-        let v1 = (glyphInfo.y + fontInfo.letterHeight - 1) / maxY;
-        let v2 = glyphInfo.y / maxY;
-   
+        const x2 = x + glyphInfo.width;
+  
+        const u1 = glyphInfo.x / maxX;
+        const u2 = (glyphInfo.x + glyphInfo.width - 1) / maxX;
+  
+        const v1 = (glyphInfo.y + fontInfo.letterHeight - 1) / maxY;
+        const v2 = glyphInfo.y / maxY;
+  
         // 6 vertices per letter
-        positions[offset + 0] = x;
-        positions[offset + 1] = 0;
-        texcoords[offset + 0] = u1;
-        texcoords[offset + 1] = v1;
-   
-        positions[offset + 2] = x2;
-        positions[offset + 3] = 0;
-        texcoords[offset + 2] = u2;
-        texcoords[offset + 3] = v1;
-   
-        positions[offset + 4] = x;
-        positions[offset + 5] = fontInfo.letterHeight;
-        texcoords[offset + 4] = u1;
-        texcoords[offset + 5] = v2;
-   
-        positions[offset + 6] = x;
-        positions[offset + 7] = fontInfo.letterHeight;
-        texcoords[offset + 6] = u1;
-        texcoords[offset + 7] = v2;
-   
-        positions[offset + 8] = x2;
-        positions[offset + 9] = 0;
-        texcoords[offset + 8] = u2;
-        texcoords[offset + 9] = v1;
-   
-        positions[offset + 10] = x2;
-        positions[offset + 11] = fontInfo.letterHeight;
-        texcoords[offset + 10] = u2;
-        texcoords[offset + 11] = v2;
-   
+        data[offset++] = x;
+        data[offset++] = 0;
+        data[offset++] = u1;
+        data[offset++] = v1;
+  
+        data[offset++] = x2;
+        data[offset++] = 0;
+        data[offset++] = u2;
+        data[offset++] = v1;
+  
+        data[offset++] = x;
+        data[offset++] = fontInfo.letterHeight;
+        data[offset++] = u1;
+        data[offset++] = v2;
+  
+        data[offset++] = x;
+        data[offset++] = fontInfo.letterHeight;
+        data[offset++] = u1;
+        data[offset++] = v2;
+  
+        data[offset++] = x2;
+        data[offset++] = 0;
+        data[offset++] = u2;
+        data[offset++] = v1;
+  
+        data[offset++] = x2;
+        data[offset++] = fontInfo.letterHeight;
+        data[offset++] = u2;
+        data[offset++] = v2;
+  
         x += glyphInfo.width + fontInfo.spacing;
-        offset += 12;
       } else {
-        // we don't have this character so just advance
+        // No glyph info, advance by space width
         x += fontInfo.spaceWidth;
       }
     }
-   
-    // return ArrayBufferViews for the portion of the TypedArrays
-    // that were actually used.
+    // Return a single Float32Array for both positions and texcoords
     return {
-      arrays: {
-        position: new Float32Array(positions.buffer, 0, offset),
-        texcoord: new Float32Array(texcoords.buffer, 0, offset),
-      },
-      numVertices: offset / 2,
+      array: data,
+      numVertices: offset / 4,
     };
   }
