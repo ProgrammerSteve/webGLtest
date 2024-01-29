@@ -71,9 +71,7 @@ export const fontInfo:FontInfo = {
   };
 
 
-
-// width and height are the dimensions of the canvas
-  export function makeVerticesForString(fontInfo: FontInfo, s: string,width:number,height:number) {
+  export function makeVerticesForString(fontInfo: FontInfo, s: string) {
     const len = s.length;
     const numVertices = len * 6; // 2 triangles per letter
     const data = new Float32Array(numVertices * 4); // 4 floats per vertex (2 for position, 2 for texcoord)
@@ -81,20 +79,15 @@ export const fontInfo:FontInfo = {
     let x = 0;
     const maxX = fontInfo.textureWidth;
     const maxY = fontInfo.textureHeight;
-  
     for (let i = 0; i < len; ++i) {
       const letter = s[i];
       const glyphInfo = fontInfo.glyphInfos[letter];
-  
       if (glyphInfo) {
         const x2 = x + glyphInfo.width;
-  
         const u1 = glyphInfo.x / maxX;
         const u2 = (glyphInfo.x + glyphInfo.width - 1) / maxX;
-  
         const v1 = (glyphInfo.y + fontInfo.letterHeight - 1) / maxY;
         const v2 = glyphInfo.y / maxY;
-  
         // 6 vertices per letter
         data[offset++] = x;
         data[offset++] = 0;
@@ -125,14 +118,11 @@ export const fontInfo:FontInfo = {
         data[offset++] = fontInfo.letterHeight;
         data[offset++] = u2;
         data[offset++] = v2;
-  
         x += glyphInfo.width + fontInfo.spacing;
       } else {
-        // No glyph info, advance by space width
-        x += fontInfo.spaceWidth;
+        x += fontInfo.spaceWidth; // No glyph info, advance by space width
       }
     }
-    // Return a single Float32Array for both positions and texcoords
     return {
       array: data,
       numVertices: offset / 4,
