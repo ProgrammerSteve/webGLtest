@@ -28,7 +28,7 @@ export default function App() {
       <Navbar page={page} handleSelection={handleSelection} toggleSidebar={toggleSidebar} isOpen={isOpen}/>
       <PageSelector page={page}/>
     </div>
-    {isOpen && <Sidebar page={page} handleSelection={handleSelection} toggleSidebar={toggleSidebar} isOpen={isOpen}/>}
+    {<Sidebar page={page} handleSelection={handleSelection} toggleSidebar={toggleSidebar} isOpen={isOpen}/>}
     </>
   );
 }
