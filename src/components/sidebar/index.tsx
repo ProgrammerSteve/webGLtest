@@ -15,8 +15,9 @@ const Sidebar:FC<NavbarProps>=({page,handleSelection,toggleSidebar,isOpen})=>{
     }
     return(
         <>
-        {isOpen &&
-        <div className="bg-gray-800 pt-[70px] text-white text-xl fixed top-0 right-0 w-[150px] sidebar-height flex flex-col gap-2 px-4 rounded-md">
+        {
+        // isOpen &&
+        <div className={` side-bar-animation ${isOpen ? 'active' : ''} pt-[70px] text-white text-xl fixed top-0 right-0 w-[150px] sidebar-height flex flex-col gap-2 px-4 rounded-md`}>
             {demoList.map((title,ind)=><Button title={title} page={page} handleSelection={handleSideBarClick.bind(page)} key={`demo-sidebar-item-${ind}`}/>)}
         </div>}
         </>
@@ -24,3 +25,7 @@ const Sidebar:FC<NavbarProps>=({page,handleSelection,toggleSidebar,isOpen})=>{
 }
 
 export default Sidebar
+
+
+// rgb(55 65 81) start 
+//rgb(31 41 55) finish

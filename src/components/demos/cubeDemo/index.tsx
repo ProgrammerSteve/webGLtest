@@ -1,7 +1,7 @@
 import { useRef,useEffect } from 'react'
 import { vertexShaderSource,fragmentShaderSource } from './shaders/shader';
 import { createIndexBuffer, createProgram, createShaders, createVertexBuffer, setupAttribute } from '../../../webGLUtils/createProgram';
-import { mat4,vec3,ReadonlyVec3 } from 'gl-matrix';
+import { mat4 } from 'gl-matrix';
 
 const CubeDemo = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
