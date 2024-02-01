@@ -7,37 +7,38 @@ import minecraft from '../../../assets/minecraft_dirt.png';
 
 
 const vertexSize=5
+const epsilon=0.01 //To get rid of texture bleeding
 const vertices = new Float32Array([
 // Right            U,V Coord
-1.0, 1.0, 1.0,      0.5,1/3,
-1.0, -1.0, 1.0,     0.75,1/3,
-1.0, -1.0, -1.0,    0.75,2/3,
-1.0, 1.0, -1.0,     0.5,2/3,
+1.0, 1.0, 1.0,      0.5+epsilon,(1/3) +epsilon,
+1.0, -1.0, 1.0,     0.75-epsilon,(1/3) +epsilon,
+1.0, -1.0, -1.0,    0.75-epsilon,(2/3) -epsilon,
+1.0, 1.0, -1.0,     0.5+epsilon,(2/3 )-epsilon,
 // Front            U,V Coord
- 1.0, 1.0, 1.0,     0.5,1/3,
- 1.0, -1.0, 1.0,    0.75,1/3,
--1.0, -1.0, 1.0,    0.75,2/3,
--1.0, 1.0, 1.0,     0.5,2/3,
+ 1.0, 1.0, 1.0,     0.5+epsilon,(1/3) +epsilon,
+ 1.0, -1.0, 1.0,    0.75-epsilon,(1/3) +epsilon,
+-1.0, -1.0, 1.0,    0.75-epsilon,(2/3) -epsilon,
+-1.0, 1.0, 1.0,     0.5+epsilon,(2/3) -epsilon,
 // Back             U,V Coord
- 1.0, 1.0, -1.0,    0.5,1/3,
- 1.0, -1.0, -1.0,   0.75,1/3,
--1.0, -1.0, -1.0,   0.75,2/3,
--1.0, 1.0, -1.0,    0.5,2/3,
+ 1.0, 1.0, -1.0,    0.5+epsilon,(1/3) +epsilon,
+ 1.0, -1.0, -1.0,   0.75-epsilon,(1/3) +epsilon,
+-1.0, -1.0, -1.0,   0.75-epsilon,(2/3) -epsilon,
+-1.0, 1.0, -1.0,    0.5+epsilon,(2/3) -epsilon,
 // Left             U,V Coord
--1.0, 1.0, -1.0,    0.5,1/3,
--1.0, -1.0, -1.0,   0.75,1/3,
--1.0, -1.0, 1.0,    0.75,2/3,
--1.0, 1.0, 1.0,     0.5,2/3,
+-1.0, 1.0, -1.0,    0.5+epsilon,(1/3) +epsilon,
+-1.0, -1.0, -1.0,   0.75-epsilon,(1/3) +epsilon,
+-1.0, -1.0, 1.0,    0.75-epsilon,(2/3) -epsilon,
+-1.0, 1.0, 1.0,     0.5+epsilon,(2/3) -epsilon,
 // Top              U,V Coord 
--1.0, 1.0, -1.0,    0.25,1/3,
--1.0, 1.0, 1.0,     0.5,1/3,
-1.0, 1.0, 1.0,      0.5,2/3,
-1.0, 1.0, -1.0,     0.25,2/3,
+-1.0, 1.0, -1.0,    0.25+epsilon,(1/3) +epsilon,
+-1.0, 1.0, 1.0,     0.5-epsilon,(1/3) +epsilon,
+1.0, 1.0, 1.0,      0.5-epsilon,(2/3) -epsilon,
+1.0, 1.0, -1.0,     0.25+epsilon,(2/3) -epsilon,
 // Bottom           U,V Coord
--1.0, -1.0, -1.0,   0.75,1/3,
--1.0, -1.0, 1.0,    1,1/3,
- 1.0, -1.0, 1.0,    1,2/3,
- 1.0, -1.0, -1.0,   0.75,2/3,
+-1.0, -1.0, -1.0,   0.75+epsilon,(1/3) +epsilon,
+-1.0, -1.0, 1.0,    1-epsilon,(1/3) +epsilon,
+ 1.0, -1.0, 1.0,    1-epsilon,(2/3) -epsilon,
+ 1.0, -1.0, -1.0,   0.75+epsilon,(2/3) -epsilon,
 ]);
 const indices = new Uint16Array([
 // Left
@@ -126,6 +127,7 @@ const CubeDemo = () => {
         gl.activeTexture(gl.TEXTURE0);
         gl.bindTexture(gl.TEXTURE_2D, texture);
         gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+
         // Set texture parameters
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
