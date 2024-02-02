@@ -5,10 +5,10 @@ import PageSelector from './components/PageSelector';
 import Sidebar from './components/sidebar';
 
 export const demoList=[
+  "3D Texture Demo",
+  "2D Texture Demo",
   "Triangle Demo",
   "Glphy Atlas",
-  "2D Texture Demo",
-  "3D Texture Demo",
   "Motion Demo",
   "Image Filter Demo",
 ]

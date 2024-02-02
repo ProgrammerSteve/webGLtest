@@ -60,7 +60,7 @@ const indices = new Uint16Array([
 21, 20, 22,
 22, 20, 23
 ]);
-const getMVPMatrices=(canvas: HTMLCanvasElement)=>{
+const getMVPMatrices=(canvas: HTMLCanvasElement,scale:number)=>{
   const modelMatrix = mat4.create();
   const viewMatrix = mat4.create();
   const projectionMatrix = mat4.create();
@@ -74,7 +74,7 @@ const getMVPMatrices=(canvas: HTMLCanvasElement)=>{
   const mvMatrix = mat4.create();
   const mvpMatrix = mat4.create();
   mat4.translate(modelMatrix, modelMatrix, [0, 0, 0]);
-  const scale=0.1
+  
   mat4.scale(modelMatrix, modelMatrix, [scale, scale, scale]);
   mat4.translate(viewMatrix, viewMatrix, [0, 0, 1]);
   mat4.invert(viewMatrix, viewMatrix);
@@ -89,6 +89,7 @@ const loadImage=()=> new Promise<HTMLImageElement>(resolve=>{
 
 const CubeDemo = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
+
     useEffect(() => {
       const canvas = canvasRef.current;
       if(!canvas)return
@@ -97,6 +98,7 @@ const CubeDemo = () => {
         throw new Error("WebGL not supported");
       }
       let animationActive = true;
+      let scale=0.1
       const {vertexShader,fragmentShader}=createShaders(gl,vertexShaderSource,fragmentShaderSource)
       let vertexBuffer=createVertexBuffer(gl,vertices)
       let indexBuffer=createIndexBuffer(gl,indices)
@@ -107,7 +109,7 @@ const CubeDemo = () => {
         matrix: gl.getUniformLocation(shaderProgram, 'matrix'),
       };
       gl.enable(gl.DEPTH_TEST);
-      const {modelMatrix,viewMatrix,projectionMatrix,mvMatrix,mvpMatrix}=getMVPMatrices(canvas)
+      const {modelMatrix,viewMatrix,projectionMatrix,mvMatrix,mvpMatrix}=getMVPMatrices(canvas,scale)
       setupAttribute(gl,shaderProgram,"position",3,vertexSize,0)
       setupAttribute(gl,shaderProgram,"aTexCoord",2,vertexSize,3)
 
@@ -142,10 +144,15 @@ const CubeDemo = () => {
               animate()
           }else{
               gl.useProgram(shaderProgram);
-              mat4.rotateY(modelMatrix, modelMatrix, 0.05);
-              mat4.rotateZ(modelMatrix, modelMatrix, Math.sin(frame*freq/(Math.PI))*Math.PI/180);
+              let newScale=1+Math.sin(frame*Math.PI/180)*0.01
+              mat4.scale(modelMatrix, modelMatrix, [newScale, newScale, newScale]);
+              mat4.rotateY(modelMatrix, modelMatrix, 0.04);
+        
+              //mat4.rotateZ(modelMatrix, modelMatrix, Math.sin((frame*freq*1.1)%360)*Math.PI/180);
+              mat4.rotateX(modelMatrix, modelMatrix, Math.sin((frame*freq)%360)*Math.PI/180);
               mat4.multiply(mvMatrix, viewMatrix, modelMatrix);
               mat4.multiply(mvpMatrix, projectionMatrix, mvMatrix);
+              
               gl.uniformMatrix4fv(uniformLocations.matrix, false, mvpMatrix);
               gl.drawElements(gl.TRIANGLES, indices.length, gl.UNSIGNED_SHORT, 0);
               frame+=2

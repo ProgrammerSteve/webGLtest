@@ -15,7 +15,7 @@ export const PAGE_CLASSES={
     image: "Image Filter Demo",
 }
   
-const getPage=(page= PAGE_CLASSES.triangle)=>{
+const getPage=(page= PAGE_CLASSES.tex3D)=>{
 return({
     [PAGE_CLASSES.triangle]: TriangleDemo,
     [PAGE_CLASSES.glphy]: GlyphDemo,
