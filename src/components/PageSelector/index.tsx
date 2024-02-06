@@ -3,6 +3,7 @@ import TwoDimTextureDemo from "../demos/textureDemo/index."
 import MotionDemo from "../demos/motionDemo"
 import GlyphDemo from "../demos/glyphDemo"
 import CubeDemo from "../demos/cubeDemo"
+import ComingSoon from "../comingSoon"
 import { FC } from "react"
 
 
@@ -22,7 +23,7 @@ return({
     [PAGE_CLASSES.tex2D]: TwoDimTextureDemo,
     [PAGE_CLASSES.tex3D]: CubeDemo,
     [PAGE_CLASSES.motion]: MotionDemo,
-    [PAGE_CLASSES.image]: TriangleDemo,
+    [PAGE_CLASSES.image]: ComingSoon,
 }[page]
 )}
 
